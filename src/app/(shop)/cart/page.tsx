@@ -17,7 +17,6 @@ const productsInCart = [
     initialData.products[8],
     initialData.products[9],
     initialData.products[10],
-
 ]
 
 export default function CartPage() {
