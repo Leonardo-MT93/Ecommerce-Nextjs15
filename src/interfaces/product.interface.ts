@@ -1,6 +1,6 @@
 export interface Product {
-    
-    description: string;
+    id: string;
+    description: string | null; //Igual que en prisma
     images: string[];
     inStock: number;
     price: number;
@@ -8,7 +8,7 @@ export interface Product {
     slug: string;
     tags: string[];
     title: string;
-    type: Type;
+    // type: Type;
     gender: Gender
 }
 export type Gender = 'men'|'women'|'kid'|'unisex';
