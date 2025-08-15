@@ -20,11 +20,11 @@ interface Props {
 export default async function GenderPage({ params, searchParams }: Props) {
 
     const { gender } = await params;
-    const { take, page } = await searchParams;
+    const { page } = await searchParams;
     if (!gender || !Object.values(Gender).includes(gender)) notFound();
 
     const pageNumber = page ? parseInt(page) : 1;
-    const { products, currentPage, totalPages } = await getPaginatedProductsWithImages({ page: pageNumber, take: 12, gender });
+    const { products, totalPages } = await getPaginatedProductsWithImages({ page: pageNumber, take: 12, gender });
 
 
 
