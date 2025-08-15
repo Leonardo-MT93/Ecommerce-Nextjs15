@@ -9,8 +9,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Teslo | Shop",
-  description: "Un ecommerce de productos Teslo",
+  title: {
+    template: "%s - Teslo | Shop",
+    default: 'Home - Teslo | Shop'
+  },
+  description: "A webshop for Teslo developed by @Leonify",
 };
 
 export default function RootLayout({
