@@ -3,8 +3,8 @@ import { getPaginatedProductsWithImages } from "@/actions";
 import ProductGrid from "@/components/products/product-grid/ProductGrid";
 import Pagination from "@/components/ui/pagination/Pagination";
 import Title from "@/components/ui/title/Title";
-import { Gender } from "@/generated/prisma";
-import { notFound, redirect } from "next/navigation";
+import { Gender } from "@prisma/client";
+import { notFound } from "next/navigation";
 
 interface Props {
     params: Promise<{

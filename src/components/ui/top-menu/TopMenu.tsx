@@ -1,6 +1,6 @@
 "use client"
 import { titleFont } from "@/config/fonts";
-import { IoCartOutline, IoMenuOutline, IoSearchOutline } from "react-icons/io5";
+import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useUiStore } from "@/store";
 

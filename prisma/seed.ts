@@ -1,18 +1,19 @@
-import { Prisma, PrismaClient } from "@/generated/prisma";
+// import { Prisma, PrismaClient } from "@/generated/prisma";
 import { initialData } from "@/seed/seed";
+import { Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const productData: Prisma.ProductCreateInput[] = initialData.products.map((product) => 
-    ({ title: product.title, 
-        description: product.description, 
-        inStock: product.inStock, 
-        price: product.price, sizes: product.sizes, 
-        slug: product.slug, 
-        tags: product.tags, 
-        gender: product.gender, 
-        category: { connectOrCreate: { where: { name: product.type }, 
-        create: { name: product.type }, }, }, 
-        ProductImage: { create: product.images.map((image) => ({ url: image, })), }, }));
+// const productData: Prisma.ProductCreateInput[] = initialData.products.map((product) => 
+//     ({ title: product.title, 
+//         description: product.description, 
+//         inStock: product.inStock, 
+//         price: product.price, sizes: product.sizes, 
+//         slug: product.slug, 
+//         tags: product.tags, 
+//         gender: product.gender, 
+//         category: { connectOrCreate: { where: { name: product.type }, 
+//         create: { name: product.type }, }, }, 
+//         ProductImage: { create: product.images.map((image) => ({ url: image, })), }, }));
 export async function main() { 
 
     await prisma.productImage.deleteMany();
@@ -24,7 +25,7 @@ export async function main() {
 
     const categoriesDB = await prisma.category.findMany();
 
-    const categoriesMap = categoriesDB.reduce((map, category) => {
+    const categoriesMap = categoriesDB.reduce((map: Record<string, string>, category: { name: string; id: string }) => {
         map[category.name] = category.id;
         return map;
     }, {} as Record<string, string>);
