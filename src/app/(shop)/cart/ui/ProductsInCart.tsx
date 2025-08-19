@@ -1,11 +1,14 @@
 "use client"
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { useCartStore } from "@/store/cart/cart-store";
+import { currencyFormat } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function ProductsInCart() {
+    const updateProductQuantity = useCartStore((state) => state.updateProductQuantity); 
+    const removeProductFromCart = useCartStore((state) => state.removeProductFromCart);
     const [loaded, setLoaded] = useState(false);
     const productsInCart = useCartStore((state) => state.cart);
 
@@ -20,7 +23,7 @@ export default function ProductsInCart() {
         <>
             {
                 productsInCart.map(product => (
-                    <div key={`${product.slug}-${product.size}`} className="flex mb-5">
+                    <div key={`${product.slug}-${product.size}`} className="flex mb-5 fade-in">
                         <Image
                             className="mr-5 rounded"
                             src={`/products/${product.image}`}
@@ -36,9 +39,12 @@ export default function ProductsInCart() {
                             <Link className="hover:underline cursor-pointer" href={`/product/${product.slug}`}>
                                 <p>{product.title} - {product.size}</p>
                             </Link>
-                            <p>${product.price}</p>
-                            <QuantitySelector onQuantityChange ={() => {}} quantity={product.quantity} />
-                            <button className="underline mt-3">Remove</button>
+                            <p>{currencyFormat(product.price)}</p>
+                            <QuantitySelector 
+                                onQuantityChange={(value) => updateProductQuantity(product, value)}
+                                quantity={product.quantity}
+                            />
+                            <button className="cursor-pointer underline mt-3" onClick={() => removeProductFromCart(product)}>Remove</button>
                         </div>
                     </div>
                 ))

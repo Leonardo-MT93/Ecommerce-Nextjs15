@@ -7,7 +7,15 @@ interface State {
     cart: CartProduct[];
 
     getTotalItems: () => number;
+    getSummaryInformation: () => {
+        subTotal: number;
+        tax: number;
+        total: number;
+        itemInCart: number;
+    },
     addProductToCart: (product: CartProduct) => void;
+    updateProductQuantity: (product: CartProduct, quantity: number) => void;
+    removeProductFromCart: (product: CartProduct) => void;
 }
 
 export const useCartStore = create<State>()(
@@ -22,7 +30,7 @@ export const useCartStore = create<State>()(
                 //Si el producto ya existe, se actualiza la cantidad
                 //Si no existe, se agrega al carrito
                 const { cart } = get();
-                const productInCart = cart.some(p => p.id === product.id && p.size === product.size);
+                const productInCart = cart.some(item => item.id === product.id && item.size === product.size);
                 if (!productInCart) {
                     set({
                         cart: [...cart, product],
@@ -30,18 +38,51 @@ export const useCartStore = create<State>()(
                     return;
                 }
                 //Si el producto ya existe, se actualiza la cantidad
-                const updatedCartProducts = cart.map((p) => {
-                    if (p.id === product.id && p.size === product.size) {
+                const updatedCartProducts = cart.map((item) => {
+                    if (item.id === product.id && item.size === product.size) {
                         return {
-                            ...p,
-                            quantity: p.quantity + product.quantity
+                            ...item,
+                            quantity: item.quantity + product.quantity
                         }
                     }
-                    return p;
+                    return item;
                 })
                 set({
                     cart: updatedCartProducts
                 })
+            },
+            updateProductQuantity: (product: CartProduct, quantity: number) => {
+                const { cart } = get();
+                const updatedCartProducts = cart.map((item) => {
+                    if (item.id === product.id && item.size === product.size) {
+                        return { ...item, quantity };
+                    }
+                    return item;
+                })
+                if (updatedCartProducts.length === 0) {
+                    return;
+                }
+
+                set({ cart: updatedCartProducts })
+            },
+            getSummaryInformation: () => {
+                const { cart } = get();
+                const subTotal = cart.reduce((subTotal, item) => subTotal + (item.price * item.quantity), 0);
+                const tax = subTotal * 0.15;
+                const total = subTotal + tax;
+                const itemInCart = cart.reduce((total, item) => total + item.quantity, 0);
+
+                return {
+                    subTotal,
+                    tax,
+                    total,
+                    itemInCart
+                }   
+            },
+            removeProductFromCart: (product: CartProduct) => {
+                const { cart } = get();
+                const updatedCartProducts = cart.filter((item) => item.id !== product.id || item.size !== product.size);
+                set({ cart: updatedCartProducts });
             }
         })
 

@@ -1,5 +1,6 @@
 import Title from "@/components/ui/title/Title";
 import { initialData } from "@/seed/seed";
+import { currencyFormat } from "@/utils";
 import clsx from "clsx";
 import Image from "next/image";
 import { IoCartOutline } from "react-icons/io5";
@@ -60,8 +61,8 @@ export default async function OrderPage({ params }: Props) {
                                     />
                                     <div className="flex flex-col">
                                         <p>{product.title}</p>
-                                        <p>{product.price} x 3</p>
-                                        <p className="font-bold">Subtotal: {product.price * 3}</p>
+                                        <p>{currencyFormat(product.price)} x 3</p>
+                                        <p className="font-bold">Subtotal: {currencyFormat(product.price * 3)}</p>
                                     </div>
                                 </div>
                             ))

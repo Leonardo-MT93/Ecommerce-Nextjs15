@@ -1,6 +1,7 @@
 
 import Title from "@/components/ui/title/Title";
 import Link from "next/link";
+import OrderSummary from "./ui/OrderSummary";
 import ProductsInCart from "./ui/ProductsInCart";
 
 
@@ -27,16 +28,7 @@ export default function CartPage() {
                     {/* Checkout */}
                     <div className="bg-white rounded-xl shadow-xl p-7 h-fit">
                         <h2 className="text-2xl font-bold mb-2">Cart Summary</h2>
-                        <div className="grid grid-cols-2">
-                            <span>Number of items</span>
-                            {/* <span className="text-right">{totalItemsInCart}</span> */}
-                            <span>Subtotal</span>
-                            <span className="text-right">$100</span>
-                            <span>Shipping</span>
-                            <span className="text-right">$10</span>
-                            <span className="mt-5 text-2xl">Total</span>
-                            <span className="mt-5 text-2xl text-right">$100</span>
-                        </div>
+                        <OrderSummary />
                         <div>
                             <Link href="/checkout/address" className="flex btn-primary justify-center items-center mt-5 mb-2 w-full">Checkout</Link>
                         </div>

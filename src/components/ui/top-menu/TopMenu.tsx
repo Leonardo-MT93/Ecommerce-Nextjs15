@@ -36,11 +36,13 @@ export default function TopMenu() {
                 <Link href="/search" className="mx-2">
                     <IoSearchOutline className="w-5 h-5" />
                 </Link>
-                <Link href="/cart" className="mx-2">
+                <Link href={
+                    (totalItemsInCart === 0 && isLoaded) ? "/empty" : "/cart"
+                } className="mx-2">
                     <div className="relative">
                         {
                             (isLoaded && totalItemsInCart > 0) && (
-                                <span className="absolute text-xs rounded-full px-1 font-bold -top-2 bg-blue-700 -right-2 text-white">
+                                <span className="fade-in absolute text-xs rounded-full px-1 font-bold -top-2 bg-blue-700 -right-2 text-white">
                                     {totalItemsInCart}
                                 </span>
                             )

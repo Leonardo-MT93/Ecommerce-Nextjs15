@@ -1,5 +1,6 @@
 import Title from "@/components/ui/title/Title";
 import { initialData } from "@/seed/seed";
+import { currencyFormat } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,8 +38,8 @@ export default function CartPage() {
                                 />
                                 <div className="flex flex-col">
                                     <p>{product.title}</p>
-                                    <p>{product.price} x 3</p>
-                                    <p className="font-bold">Subtotal: {product.price * 3}</p>
+                                    <p>{currencyFormat(product.price)} x 3</p>
+                                    <p className="font-bold">Subtotal: {currencyFormat(product.price * 3)}</p>
                                 </div>
                             </div>
                         ))
