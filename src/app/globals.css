@@ -100,3 +100,13 @@ body {
 .btn-secondary:hover {
   background-color: var(--color-secondary-hover);
 }
+
+.btn-disabled {
+  background-color: var(--color-blue-500);
+  color: black;
+  padding: var(--spacing-button-y) var(--spacing-button-x);
+  border-radius: var(--radius-button);
+  transition: var(--transition-all);
+  opacity: 0.5;
+  cursor: not-allowed;
+}

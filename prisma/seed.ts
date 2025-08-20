@@ -3,24 +3,16 @@ import { initialData } from "@/seed/seed";
 import { Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-// const productData: Prisma.ProductCreateInput[] = initialData.products.map((product) => 
-//     ({ title: product.title, 
-//         description: product.description, 
-//         inStock: product.inStock, 
-//         price: product.price, sizes: product.sizes, 
-//         slug: product.slug, 
-//         tags: product.tags, 
-//         gender: product.gender, 
-//         category: { connectOrCreate: { where: { name: product.type }, 
-//         create: { name: product.type }, }, }, 
-//         ProductImage: { create: product.images.map((image) => ({ url: image, })), }, }));
 export async function main() { 
-
+    await prisma.user.deleteMany();
     await prisma.productImage.deleteMany();
     await prisma.product.deleteMany();
     await prisma.category.deleteMany();
 
-    const { categories, products } = initialData;   
+    const { categories, products, users } = initialData;   
+
+    await prisma.user.createMany({ data: users})
+
     await prisma.category.createMany({ data: categories.map((category) => ({ name: category })) });
 
     const categoriesDB = await prisma.category.findMany();

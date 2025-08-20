@@ -46,7 +46,8 @@ export default function SideBar() {
                         placeholder="Search"
                         className="w-full rounded border bg-gray-50 pl-10 py-1 pr-10 border-b-2 text-xl  border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </div>
-                <Link href="/"
+                <Link href="/profile"
+                    onClick={closeSideMenu}
                     className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
                 >
                     <IoPersonOutline size={30} />
