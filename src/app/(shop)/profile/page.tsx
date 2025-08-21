@@ -11,15 +11,12 @@ export default async function ProfilePage() {
         <div>
             <Title title="Profile" />
 
-            {
-                session?.user && (
-                    <div>
-                        <h2>User</h2>
-                        <p>{session.user.name}</p>
-                        <p>{session.user.email}</p>
-                    </div>
-                )
-            }
+            <pre>{JSON.stringify(session.user, null, 2)}</pre>
+            <h3 className="text-3xl font-bold mb-10">{session.user.role}</h3>
+            <h3 className="text-3xl font-bold mb-10">{session.user.email}</h3>
+            <h3 className="text-3xl font-bold mb-10">{session.user.name}</h3>
+            {/* <h3 className="text-3xl font-bold mb-10">{session.user.image}</h3> */}
+            <h3 className="text-3xl font-bold mb-10">{session.user.emailVerified}</h3>
         </div>
     )
 }

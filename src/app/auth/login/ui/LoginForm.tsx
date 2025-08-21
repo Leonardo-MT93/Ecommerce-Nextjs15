@@ -2,16 +2,24 @@
 import { authenticate } from "@/actions";
 import clsx from "clsx";
 import Link from "next/link";
-import { useActionState } from "react";
+// import { useRouter } from "next/navigation";
+import { useActionState, useEffect } from "react";
 import { useFormStatus } from "react-dom";
 import { IoInformationCircleOutline } from "react-icons/io5";
 
 export default function LoginForm() {
 
     const [state, dispatch] = useActionState(authenticate, undefined );
-    console.log('🔵 [FORM] Estado actual:', state);
-    console.log('🔵 [FORM] Tipo de estado:', typeof state);
-    
+    console.log(state);
+    // const router = useRouter();
+
+    useEffect(() => {
+        if (state === 'Success') {
+            // router.replace('/');
+            window.location.replace('/');
+        }
+    }, [state]);
+
     return (
         <form action={dispatch} className="flex flex-col">
 
@@ -39,7 +47,7 @@ export default function LoginForm() {
                     </div>
                 )}
                 {
-                    state === 'success' && (
+                    state === 'Success' && (
                         <div className="flex items-center gap-2 mb-2">
                             <IoInformationCircleOutline className="h-5 w-5 text-green-500" />
                             <p className="text-sm text-green-500">Login successful</p>

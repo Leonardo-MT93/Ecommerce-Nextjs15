@@ -7,7 +7,6 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
     const session = await auth();
 
     if (session?.user) {
-        console.log('🔵 [LAYOUT] Redirigiendo a la página principal');
         redirect('/');
     }
 

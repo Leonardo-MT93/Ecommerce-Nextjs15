@@ -12,20 +12,20 @@ export async function authenticate(
 ){
   try {
 
-    await signIn('credentials', formData);
-    console.log('🔵 [AUTH] signIn completado exitosamente');
-    return 'success';
+    await signIn('credentials', {
+      ...Object.fromEntries(formData),
+      redirect: false,
+    });
+    return 'Success';
   } catch (error) {
-    console.log('🔴 [AUTH] Error capturado:', error);
-    // if (error instanceof AuthError) {
-    //   switch (error.type) {
-    //     case 'CredentialsSignin':
-    //       return 'Invalid credentials.';
-    //     default:
-    //       return 'Something went wrong.';
-    //   }
-    // }
-    // throw error;
-    return 'CredentialsSignin';
+    if(error instanceof AuthError) {
+      switch(error.type) {
+        case 'CredentialsSignin':
+          return 'CredentialsSignin';
+        default:
+          return 'AuthError';
+      }
+    }
+    return 'AuthError';
   }
 }
