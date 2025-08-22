@@ -1,8 +1,6 @@
 export const revalidate = 604800; // 1 week
 
 import { getProductBySlug } from "@/actions";
-import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
-import SizeSelector from "@/components/product/size-selector/SizeSelector";
 import ProductMobileSlideshow from "@/components/product/slideshow/ProductMobileSlideshow";
 import ProductSlideShow from "@/components/product/slideshow/ProductSlideShow";
 import StockLabel from "@/components/product/stock-label/StockLabel";

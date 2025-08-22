@@ -11,6 +11,7 @@ export async function authenticate(
   formData: FormData,
 ){
   try {
+    const callbackUrl = formData.get('callbackUrl') as string || '/';
 
     await signIn('credentials', {
       ...Object.fromEntries(formData),
@@ -27,5 +28,26 @@ export async function authenticate(
       }
     }
     return 'AuthError';
+  }
+}
+
+export const loginUser = async (email: string, password: string) => {
+  try {
+    const response = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+
+    return {
+      ok: true,
+      message: 'Login successful'
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      ok: false,
+      message: 'Error logging in'
+    }
   }
 }

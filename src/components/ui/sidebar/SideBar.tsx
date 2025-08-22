@@ -1,8 +1,7 @@
 "use client"
-import { logout } from "@/actions";
 import { useUiStore } from "@/store/ui/ui-store";
 import clsx from "clsx";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5";
 
@@ -15,7 +14,7 @@ export default function SideBar() {
     const isAuthenticated = !!session?.user;
     const isAdmin = session?.user.role === "admin";
 
-    
+
 
     return (
         <div className="hidden md:block">
@@ -94,7 +93,7 @@ export default function SideBar() {
                             </Link>
                             <div className="w-full h-px bg-gray-200 my-10" />
                             <button
-                                onClick={() => logout()}
+                                onClick={() => signOut({ callbackUrl: '/' })}
                                 onClickCapture={() => closeSideMenu()}
                                 className="flex items-center mt-10 p-2  hover:bg-red-100 transition-all rounded cursor-pointer"
                             >
@@ -110,7 +109,7 @@ export default function SideBar() {
                 {
                     isAuthenticated && session?.user?.role === "user" && (
                         <>
-                        <Link href="/profile"
+                            <Link href="/profile"
                                 onClick={closeSideMenu}
                                 className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
                             >
@@ -125,7 +124,7 @@ export default function SideBar() {
                             </Link>
                             <div className="w-full h-px bg-gray-200 my-10" />
                             <button
-                                onClick={() => logout()}
+                                onClick={() => signOut({ callbackUrl: '/' })}
                                 onClickCapture={() => closeSideMenu()}
                                 className="flex items-center mt-10 p-2  hover:bg-red-100 transition-all rounded cursor-pointer"
                             >
@@ -137,42 +136,7 @@ export default function SideBar() {
                 }
 
 
-                {/* 
-                <Link href="/profile"
-                    onClick={closeSideMenu}
-                    className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
-                >
-                    <IoPersonOutline size={30} />
-                    <span className="ml-3 text-xl ">Profile</span>
-                </Link>
-                <Link href="/"
-                    className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
-                >
-                    <IoTicketOutline size={30} />
-                    <span className="ml-3 text-xl ">Orders</span>
-                </Link> */}
 
-
-
-                {/* <div className="w-full h-px bg-gray-200 my-10" />
-                <Link href="/"
-                    className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
-                >
-                    <IoShirtOutline size={30} />
-                    <span className="ml-3 text-xl ">Products</span>
-                </Link>
-                <Link href="/"
-                    className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
-                >
-                    <IoTicketOutline size={30} />
-                    <span className="ml-3 text-xl ">Orders</span>
-                </Link>
-                <Link href="/"
-                    className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
-                >
-                    <IoPeopleOutline size={30} />
-                    <span className="ml-3 text-xl ">Users</span>
-                </Link> */}
             </nav>
         </div>
     )

@@ -2,7 +2,7 @@
 import { authenticate } from "@/actions";
 import clsx from "clsx";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { useFormStatus } from "react-dom";
 import { IoInformationCircleOutline } from "react-icons/io5";
@@ -10,18 +10,22 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 export default function LoginForm() {
 
     const [state, dispatch] = useActionState(authenticate, undefined );
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get('callbackUrl') || '/';
+    
     console.log(state);
-    // const router = useRouter();
 
     useEffect(() => {
         if (state === 'Success') {
-            // router.replace('/');
-            window.location.replace('/');
+            window.location.replace(callbackUrl);
         }
-    }, [state]);
+    }, [state, callbackUrl]);
 
     return (
         <form action={dispatch} className="flex flex-col">
+
+            {/* Hidden field to store the callbackUrl */}
+            <input type="hidden" name="callbackUrl" value={callbackUrl} />
 
             <label htmlFor="email">Email</label>
             <input
