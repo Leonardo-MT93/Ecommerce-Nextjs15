@@ -1,12 +1,9 @@
 'use client';
-
 import { loginUser, registerUser } from "@/actions";
 import clsx from "clsx";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
-
-
 
 type MessageType = 'error' | 'success' | 'loading';
 
@@ -30,9 +27,9 @@ export const RegisterForm = () => {
 
     const showMessage = (type: MessageType, text: string) => {
         setMessage({ type, text });
-        // Auto-hide success messages after 3 seconds
+        // Auto-hide success messages after 2 seconds
         if (type === 'success') {
-            setTimeout(() => setMessage(null), 3000);
+            setTimeout(() => setMessage(null), 2000);
         }
     };
 

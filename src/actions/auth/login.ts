@@ -3,6 +3,7 @@
 import { signIn } from '@/auth.config';
 import { sleep } from '@/utils';
 import { AuthError } from 'next-auth';
+import prisma from '@/lib/prisma';
  
 // ...
  
@@ -12,9 +13,28 @@ export async function authenticate(
 ){
   try {
     const callbackUrl = formData.get('callbackUrl') as string || '/';
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
 
+    // Validate that both email and password are provided
+    if (!email || !password) {
+      return 'MissingCredentials';
+    }
+
+    // Check if user exists first
+    const user = await prisma.user.findUnique({
+      where: { email: email.toLowerCase() },
+      select: { id: true, email: true }
+    });
+
+    if (!user) {
+      return 'EmailNotFound';
+    }
+
+    // Try to authenticate
     await signIn('credentials', {
-      ...Object.fromEntries(formData),
+      email,
+      password,
       redirect: false,
     });
     return 'Success';
@@ -22,7 +42,9 @@ export async function authenticate(
     if(error instanceof AuthError) {
       switch(error.type) {
         case 'CredentialsSignin':
-          return 'CredentialsSignin';
+          return 'InvalidPassword';
+        case 'CallbackRouteError':
+          return 'CallbackError';
         default:
           return 'AuthError';
       }
@@ -33,6 +55,19 @@ export async function authenticate(
 
 export const loginUser = async (email: string, password: string) => {
   try {
+    // Check if user exists first
+    const user = await prisma.user.findUnique({
+      where: { email: email.toLowerCase() },
+      select: { id: true, email: true }
+    });
+
+    if (!user) {
+      return {
+        ok: false,
+        message: 'Email not found. Please check your email address or create a new account.'
+      };
+    }
+
     const response = await signIn('credentials', {
       email,
       password,
@@ -45,9 +80,30 @@ export const loginUser = async (email: string, password: string) => {
     }
   } catch (error) {
     console.log(error);
+    
+    if (error instanceof AuthError) {
+      switch(error.type) {
+        case 'CredentialsSignin':
+          return {
+            ok: false,
+            message: 'Incorrect password. Please check your password and try again.'
+          };
+        case 'CallbackRouteError':
+          return {
+            ok: false,
+            message: 'Authentication callback error'
+          };
+        default:
+          return {
+            ok: false,
+            message: 'Authentication error occurred'
+          };
+      }
+    }
+    
     return {
       ok: false,
-      message: 'Error logging in'
+      message: 'Unexpected error occurred'
     }
   }
 }
