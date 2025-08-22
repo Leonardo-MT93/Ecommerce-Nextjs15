@@ -26,10 +26,10 @@ export default async function Home({searchParams}: Props) {
 
 
   return (
-    <>
+    <div className="px-4 sm:px-6 lg:px-8">
       <Title title="Shop" subtitle="All the products" className="mb-2"/>
       <ProductGrid products={products} />
       <Pagination totalPages={totalPages} />
-    </>
+    </div>
   );
 }

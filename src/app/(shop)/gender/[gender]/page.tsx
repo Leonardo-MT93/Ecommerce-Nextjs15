@@ -30,7 +30,7 @@ export default async function GenderPage({ params, searchParams }: Props) {
 
 
     return (
-        <div>
+        <div className="px-4 sm:px-6 lg:px-8">
             <Title title={`${gender.charAt(0).toUpperCase() + gender.slice(1)} products`} className="mb-2" />
             {products.length === 0 && <div className="text-center text-2xl font-bold">No products found</div>}
             <ProductGrid products={products} />

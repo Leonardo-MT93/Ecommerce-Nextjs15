@@ -16,29 +16,40 @@ export default function ProductSlideShow({ images, title, className }: Props) {
 
     return (
         <div className={className}>
-            <Swiper
-                style={{
-                    width: "100vw",
-                    height: "500px",
-                } as React.CSSProperties}
-                pagination={true}
-                autoplay={{
-                    delay: 3000,
-                }}
-                modules={[Pagination, Autoplay]}
-                className="mySwiper2"
-            >
-                {
-                    images.map(image => (
-                        <SwiperSlide key={image}>
-                            <Image
-                                className="object-fill"
-                                src={`/products/${image}`} alt={title} width={600} height={500} />
-                        </SwiperSlide>
-                    ))
-                }
+            <div className="w-full aspect-square max-w-[500px] mx-auto">
+                <Swiper
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                    } as React.CSSProperties}
+                    pagination={true}
+                    autoplay={{
+                        delay: 3000,
+                    }}
+                    modules={[Pagination, Autoplay]}
+                    className="mySwiper2"
+                >
+                    {
+                        images.map(image => (
+                            <SwiperSlide key={image}>
+                                <Image
+                                    className="object-cover"
+                                    src={`/products/${image}`} 
+                                    alt={title} 
+                                    width={500} 
+                                    height={500}
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                            </SwiperSlide>
+                        ))
+                    }
 
-            </Swiper>
+                </Swiper>
+            </div>
         </div>
 
     )

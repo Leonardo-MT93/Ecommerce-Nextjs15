@@ -8,7 +8,7 @@ export default async function ProfilePage() {
         redirect('/auth/login');
     }
     return (
-        <div>
+        <div className="px-4 sm:px-6 lg:px-8">
             <Title title="Profile" />
 
             <pre>{JSON.stringify(session.user, null, 2)}</pre>

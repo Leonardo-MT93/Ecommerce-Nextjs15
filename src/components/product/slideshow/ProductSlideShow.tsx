@@ -21,31 +21,44 @@ export default function ProductSlideShow({ images, title, className }: Props) {
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperObject>();
     return (
         <div className={className}>
-            <Swiper
-                style={{
-                    '--swiper-navigation-color': '#fff',
-                    '--swiper-pagination-color': '#fff',
-                } as React.CSSProperties}
-                spaceBetween={10}
-                navigation={true}
-                autoplay={{
-                    delay: 2000,
-                }}
-                thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
-                modules={[FreeMode, Navigation, Thumbs, Autoplay]}
-                className="mySwiper2"
-            >
-                {
-                    images.map(image => (
-                        <SwiperSlide key={image}>
-                            <Image
-                                className="rounded-lg object-fill"
-                                src={`/products/${image}`} alt={title} width={1024} height={800} />
-                        </SwiperSlide>
-                    ))
-                }
+            <div className="w-full aspect-square max-w-[600px] mx-auto">
+                <Swiper
+                    style={{
+                        '--swiper-navigation-color': '#fff',
+                        '--swiper-pagination-color': '#fff',
+                        width: '100%',
+                        height: '100%',
+                    } as React.CSSProperties}
+                    spaceBetween={10}
+                    navigation={true}
+                    autoplay={{
+                        delay: 2000,
+                    }}
+                    thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+                    modules={[FreeMode, Navigation, Thumbs, Autoplay]}
+                    className="mySwiper2"
+                >
+                    {
+                        images.map(image => (
+                            <SwiperSlide key={image}>
+                                <Image
+                                    className="rounded-lg object-cover"
+                                    src={`/products/${image}`} 
+                                    alt={title} 
+                                    width={600} 
+                                    height={600}
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                            </SwiperSlide>
+                        ))
+                    }
 
-            </Swiper>
+                </Swiper>
+            </div>
             <Swiper
                 onSwiper={setThumbsSwiper}
                 spaceBetween={10}
@@ -59,8 +72,17 @@ export default function ProductSlideShow({ images, title, className }: Props) {
                     images.map(image => (
                         <SwiperSlide key={image}>
                             <Image
-                                className="rounded-lg object-fill"
-                                src={`/products/${image}`} alt={title} width={300} height={300} />
+                                className="rounded-lg object-cover"
+                                src={`/products/${image}`} 
+                                alt={title} 
+                                width={300} 
+                                height={300}
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover'
+                                }}
+                            />
                         </SwiperSlide>
                     ))
                 }

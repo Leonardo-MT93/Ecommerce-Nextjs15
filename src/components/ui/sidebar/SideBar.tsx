@@ -17,7 +17,7 @@ export default function SideBar() {
 
 
     return (
-        <div className="hidden md:block">
+        <div>
 
             {isSideMenuOpen && (
                 <div
@@ -35,7 +35,7 @@ export default function SideBar() {
             <nav className={
                 clsx(
 
-                    "fixed p-5 top-0 right-0 w-[500px] h-screen bg-white z-20 shadow-2xl transition-all transform duration-300",
+                    "fixed p-5 top-0 right-0 w-[300px] md:w-[500px] h-screen bg-white z-20 shadow-2xl transition-all transform duration-300",
                     {
                         "translate-x-full": !isSideMenuOpen,
                     }

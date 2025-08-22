@@ -6,10 +6,10 @@ import { IoCardOutline } from 'react-icons/io5';
 
 export default function OrdersPage() {
   return (
-    <>
+    <div className="px-4 sm:px-6 lg:px-8">
       <Title title="Orders" />
 
-      <div className="mb-10">
+      <div className="mb-10 overflow-x-auto">
         <table className="min-w-full">
           <thead className="bg-gray-200 border-b">
             <tr>
@@ -72,6 +72,6 @@ export default function OrdersPage() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }

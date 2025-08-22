@@ -50,26 +50,28 @@ export default async function ProductPage({ params }: Props) {
 
     if (!product || 'error' in product) notFound();
     return (
-        <div className="grid mt-5 mb-20 grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="col-span-1 md:col-span-2">
-                {/* Desktop Slideshow */}
-                <ProductSlideShow images={product.images} title={product.title}
-                    className="hidden md:block"
-                />
-                {/* Mobile Slideshow */}
-                <ProductMobileSlideshow images={product.images} title={product.title}
-                    className="block md:hidden"
-                />
-            </div>
-            <div className="col-span-1 px-5 ">
-                <StockLabel slug={slug} />
-                <h1 className={`${titleFont.className} antialiased text-xl font-bold`}>{`${product.title}`}</h1>
+        <div className="px-4 sm:px-6 lg:px-8">
+            <div className="grid mt-5 mb-20 grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="col-span-1 md:col-span-2">
+                    {/* Desktop Slideshow */}
+                    <ProductSlideShow images={product.images} title={product.title}
+                        className="hidden md:block"
+                    />
+                    {/* Mobile Slideshow */}
+                    <ProductMobileSlideshow images={product.images} title={product.title}
+                        className="block md:hidden"
+                    />
+                </div>
+                <div className="col-span-1 px-5 ">
+                    <StockLabel slug={slug} />
+                    <h1 className={`${titleFont.className} antialiased text-xl font-bold`}>{`${product.title}`}</h1>
 
-                <p className="mb-5 text-lg text-gray-700">{`${currencyFormat(product.price)}`}</p>
-                <AddToCart product={product} />
-                <h3 className="text-sm font-bold">Description</h3>
-                <p className="font-light">{`${product.description}`}</p>
+                    <p className="mb-5 text-lg text-gray-700">{`${currencyFormat(product.price)}`}</p>
+                    <AddToCart product={product} />
+                    <h3 className="text-sm font-bold">Description</h3>
+                    <p className="font-light">{`${product.description}`}</p>
 
+                </div>
             </div>
         </div>
     )
