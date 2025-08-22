@@ -36,7 +36,6 @@ export const registerUser = async (fullName: string, email: string, password: st
             message: 'User registered successfully'
         };
     } catch (error: any) {
-        console.log(error);
         
         // Handle specific Prisma errors
         if (error.code === 'P2002') {

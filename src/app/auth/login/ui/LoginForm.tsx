@@ -15,7 +15,6 @@ export default function LoginForm() {
     const searchParams = useSearchParams();
     const callbackUrl = searchParams.get('callbackUrl') || '/';
     
-    console.log(state);
 
     useEffect(() => {
         if (state === 'Success') {

@@ -79,7 +79,6 @@ export const loginUser = async (email: string, password: string) => {
       message: 'Login successful'
     }
   } catch (error) {
-    console.log(error);
     
     if (error instanceof AuthError) {
       switch(error.type) {
