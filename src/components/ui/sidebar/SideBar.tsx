@@ -14,6 +14,9 @@ export default function SideBar() {
     const isAuthenticated = !!session?.user;
     const isAdmin = session?.user.role === "admin";
 
+    const userName = session?.user?.name?.split(" ")[0];
+    const userLastName = session?.user?.name?.split(" ")[1];
+
 
 
     return (
@@ -65,6 +68,7 @@ export default function SideBar() {
                 {
                     isAuthenticated && session?.user?.role === "admin" && (
                         <>
+                            <p className="text-xl font-bold">Hello!, {userName} {userLastName} Admin</p>
                             <Link href="/profile"
                                 onClick={closeSideMenu}
                                 className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
@@ -79,7 +83,7 @@ export default function SideBar() {
                                 <IoShirtOutline size={30} />
                                 <span className="ml-3 text-xl ">Products</span>
                             </Link>
-                            <Link href="/"
+                            <Link href="/orders"
                                 className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
                             >
                                 <IoTicketOutline size={30} />
@@ -109,6 +113,7 @@ export default function SideBar() {
                 {
                     isAuthenticated && session?.user?.role === "user" && (
                         <>
+                            <p className="text-xl font-bold mt-10 mx-auto">Hello!, {userName} {userLastName}</p>
                             <Link href="/profile"
                                 onClick={closeSideMenu}
                                 className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
@@ -116,7 +121,7 @@ export default function SideBar() {
                                 <IoPersonOutline size={30} />
                                 <span className="ml-3 text-xl ">Profile</span>
                             </Link>
-                            <Link href="/"
+                            <Link href="/orders"
                                 className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
                             >
                                 <IoTicketOutline size={30} />
