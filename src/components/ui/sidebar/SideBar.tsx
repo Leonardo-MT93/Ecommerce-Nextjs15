@@ -78,18 +78,21 @@ export default function SideBar() {
                             </Link>
                             <div className="w-full h-px bg-gray-200 my-10" />
                             <Link href="/"
+                                onClick={closeSideMenu}
                                 className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
                             >
                                 <IoShirtOutline size={30} />
                                 <span className="ml-3 text-xl ">Products</span>
                             </Link>
                             <Link href="/orders"
+                                onClick={closeSideMenu}
                                 className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
                             >
                                 <IoTicketOutline size={30} />
                                 <span className="ml-3 text-xl ">Orders</span>
                             </Link>
                             <Link href="/"
+                                onClick={closeSideMenu}
                                 className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
                             >
                                 <IoPeopleOutline size={30} />
@@ -122,6 +125,7 @@ export default function SideBar() {
                                 <span className="ml-3 text-xl ">Profile</span>
                             </Link>
                             <Link href="/orders"
+                                onClick={closeSideMenu}
                                 className="flex items-center mt-10 p-2  hover:bg-gray-100 transition-all rounded"
                             >
                                 <IoTicketOutline size={30} />

@@ -1,17 +1,11 @@
 import { getOrderById } from "@/actions/order/get-order-by-id";
+import { PaypalButton } from "@/components";
 import Title from "@/components/ui/title/Title";
-import { initialData } from "@/seed/seed";
 import { currencyFormat } from "@/utils";
 import clsx from "clsx";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { IoCartOutline } from "react-icons/io5";
-
-const productsInCart = [
-    initialData.products[0],
-    initialData.products[1],
-    initialData.products[2],
-]
+import { IoCartOutline } from "react-icons/io5";    
 
 interface Props {
     params: Promise<{
@@ -35,7 +29,7 @@ export default async function OrderPage({ params }: Props) {
     return (
         <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
             <div className="flex flex-col w-[1000px]">
-                <Title title={`Order #${id}`} />
+                <Title title={`Order #${id.split('-').at(-1)}`} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     {/* Order Details */}
                     <div className="flex flex-col mt-5">
@@ -105,20 +99,8 @@ export default async function OrderPage({ params }: Props) {
                             <span className="mt-5 text-2xl text-right">{currencyFormat(order!.total)}</span>
                         </div>
                         <div className="mt-5 mb-2 w-full">
-                            <div className={
-                                clsx(
-                                    "flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5",
-                                    {
-                                        "bg-green-700": order!.isPaid,
-                                        "bg-red-500": !order!.isPaid,
-                                    }
+                            <PaypalButton orderId={order!.id} amount={order!.total} />
 
-                                )
-                            }>
-                                <IoCartOutline size={30} />
-                                <span className="mx-2">{order!.isPaid ? "Paid" : "Pending"}</span>
-
-                            </div>
                         </div>
                     </div>
                 </div>
