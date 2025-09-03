@@ -10,11 +10,7 @@ export const getProductBySlug = async (slug: string) => {
                 slug: slug
             },
             include: {
-                ProductImage: {
-                    select: {
-                        url: true,
-                    },
-                },
+                ProductImage: true
             },
         })
         if (!product) {
@@ -26,6 +22,11 @@ export const getProductBySlug = async (slug: string) => {
         return {
             ...product,
             images: product.ProductImage.map((image) => image.url),
+            ProductImage: product.ProductImage.map((image) => ({
+                id: image.id,
+                url: image.url,
+                productId: image.productId
+            }))
         }
     } catch (error) {
         throw new Error("Failed to fetch product")

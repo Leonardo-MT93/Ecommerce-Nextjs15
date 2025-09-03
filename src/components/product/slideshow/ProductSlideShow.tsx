@@ -9,6 +9,7 @@ import './slideshow.css';
 import { useState } from "react";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 import Image from "next/image";
+import { ProductImage } from "../product-image/ProductImage";
 
 interface Props {
     images: string[];
@@ -41,17 +42,12 @@ export default function ProductSlideShow({ images, title, className }: Props) {
                     {
                         images.map(image => (
                             <SwiperSlide key={image}>
-                                <Image
+                                <ProductImage
                                     className="rounded-lg object-cover"
-                                    src={`/products/${image}`} 
+                                    src={image} 
                                     alt={title} 
                                     width={600} 
                                     height={600}
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        objectFit: 'cover'
-                                    }}
                                 />
                             </SwiperSlide>
                         ))
@@ -71,17 +67,12 @@ export default function ProductSlideShow({ images, title, className }: Props) {
                                 {
                     images.map(image => (
                         <SwiperSlide key={image}>
-                            <Image
-                                className="rounded-lg object-cover"
-                                src={`/products/${image}`} 
+                            <ProductImage
+                                className="rounded-lg object-fill"
+                                src={image} 
                                 alt={title} 
                                 width={300} 
                                 height={300}
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover'
-                                }}
                             />
                         </SwiperSlide>
                     ))

@@ -110,3 +110,15 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.btn-danger {
+  background-color: var(--color-red-500);
+  color: white;
+  padding: var(--spacing-button-y);
+  border-radius: var(--radius-button);
+  transition: var(--transition-all);
+}
+
+.btn-danger:hover {
+  background-color: var(--color-red-600);
+}

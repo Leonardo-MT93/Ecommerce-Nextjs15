@@ -1,4 +1,5 @@
 "use client"
+import { ProductImage } from "@/components";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { useCartStore } from "@/store/cart/cart-store";
 import { currencyFormat } from "@/utils";
@@ -24,9 +25,9 @@ export default function ProductsInCart() {
             {
                 productsInCart.map(product => (
                     <div key={`${product.slug}-${product.size}`} className="flex mb-5 fade-in">
-                        <Image
+                        <ProductImage
                             className="mr-5 rounded"
-                            src={`/products/${product.image}`}
+                            src={product.image}
                             alt={product.title}
                             style={{
                                 width: "100px",
