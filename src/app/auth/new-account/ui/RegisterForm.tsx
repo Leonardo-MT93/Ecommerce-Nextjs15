@@ -119,7 +119,7 @@ export const RegisterForm = () => {
             window.location.replace('/');
             
         } catch (error) {
-            showMessage('error', 'Unexpected error. Please try again.');
+            showMessage(`error`, `Unexpected error. Please try again.: ${error}`);
         } finally {
             setIsLoading(false);
         }

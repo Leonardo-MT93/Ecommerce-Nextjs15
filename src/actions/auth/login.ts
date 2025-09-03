@@ -1,7 +1,6 @@
 'use server';
  
 import { signIn } from '@/auth.config';
-import { sleep } from '@/utils';
 import { AuthError } from 'next-auth';
 import prisma from '@/lib/prisma';
  
@@ -12,7 +11,6 @@ export async function authenticate(
   formData: FormData,
 ){
   try {
-    const callbackUrl = formData.get('callbackUrl') as string || '/';
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
@@ -68,11 +66,11 @@ export const loginUser = async (email: string, password: string) => {
       };
     }
 
-    const response = await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-    });
+    // const response = await signIn('credentials', {
+    //   email,
+    //   password,
+    //   redirect: false,
+    // });
 
     return {
       ok: true,

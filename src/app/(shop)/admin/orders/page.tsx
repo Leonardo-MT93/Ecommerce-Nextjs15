@@ -1,5 +1,5 @@
 
-import { getOrdersByUser, getPaginatedOrders } from '@/actions';
+import { getPaginatedOrders } from '@/actions';
 import Title from '@/components/ui/title/Title';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';

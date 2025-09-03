@@ -14,24 +14,26 @@ export default function StockLabel({ slug }: Props) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        const getStock = async () => {
+            const stock = await getStockBySlug(slug);
+            setStock(stock);
+            setIsLoading(false);
+        }
+
         getStock();
 
 
     }, [slug]);
 
-    const getStock = async () => {
-        const stock = await getStockBySlug(slug);
-        setStock(stock);
-        setIsLoading(false);
-    }
+
 
 
     return (
         <>
 
-        {!isLoading ? (
-            <h1 className={`${titleFont.className} antialiased text-lg font-bold`}>
-                {`Stock: ${stock}`}
+            {!isLoading ? (
+                <h1 className={`${titleFont.className} antialiased text-lg font-bold`}>
+                    {`Stock: ${stock}`}
 
                 </h1>
             ) : (

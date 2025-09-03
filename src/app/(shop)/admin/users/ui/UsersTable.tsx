@@ -1,7 +1,6 @@
 "use client";
 import { changeUserRole } from "@/actions/user/change-user-role";
 import { User } from "@/interfaces";
-import Link from "next/link"
 
 interface Props {
     users: User[];

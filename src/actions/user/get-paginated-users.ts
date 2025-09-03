@@ -27,7 +27,7 @@ export const getPaginatedUsers = async () => {
     } catch (error) {
         return {
             ok: false,
-            message: "Error fetching users",
+            message: `Error fetching users: ${error}`,
         }
     }
 }

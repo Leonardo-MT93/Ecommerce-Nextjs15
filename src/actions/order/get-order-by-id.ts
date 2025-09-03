@@ -54,7 +54,7 @@ export const getOrderById = async (id: string) => {
     }catch(error){
         return {
             ok: false,
-            message: "Error getting order",
+            message: `Error getting order: ${error}`,
         }
     }
 }

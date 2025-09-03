@@ -3,9 +3,7 @@ import { ProductImage } from '@/components';
 import Pagination from '@/components/ui/pagination/Pagination';
 import Title from '@/components/ui/title/Title';
 import { currencyFormat } from '@/utils/currencyFormat';
-import Image from 'next/image';
 import Link from 'next/link';
-import { IoCardOutline } from 'react-icons/io5';
 
 interface Props {
   searchParams: Promise<{
@@ -17,7 +15,7 @@ export default async function OrdersPage({ searchParams }: Props) {
 
   const params = await searchParams;
   const page = params.page ? parseInt(params.page) : 1;
-  const { products, currentPage, totalPages } = await getPaginatedProductsWithImages({ page, take: 12 });
+  const { products, totalPages } = await getPaginatedProductsWithImages({ page, take: 12 });
 
 
 

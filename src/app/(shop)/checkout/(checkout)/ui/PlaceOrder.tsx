@@ -3,7 +3,7 @@
 import { placeOrder } from "@/actions";
 import { useAddressStore } from "@/store/address/address-store";
 import { useCartStore } from "@/store/cart/cart-store";
-import { currencyFormat, sleep } from "@/utils";
+import { currencyFormat } from "@/utils";
 import clsx from "clsx";
 import Link from "next/link"
 import { useRouter } from "next/navigation";

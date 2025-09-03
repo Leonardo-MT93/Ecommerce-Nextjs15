@@ -38,7 +38,7 @@ export const getOrdersByUser = async () => {
     } catch (error) {
         return {
             ok: false,
-            message: "Error getting orders",
+            message: `Error getting orders: ${error}`,
         }
     }
 

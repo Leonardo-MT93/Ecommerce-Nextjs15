@@ -8,7 +8,6 @@ import 'swiper/css/thumbs';
 import './slideshow.css';
 import { useState } from "react";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
-import Image from "next/image";
 import { ProductImage } from "../product-image/ProductImage";
 
 interface Props {

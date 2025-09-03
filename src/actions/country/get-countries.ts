@@ -10,7 +10,7 @@ export const getCountries = async () => {
         });
         return countries;
     }catch(error){
-        throw new Error('Error getting countries');
+        throw new Error(`Error getting countries: ${error}`);
     }
 }
 

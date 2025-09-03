@@ -12,7 +12,7 @@ export default function SideBar() {
 
     const { data: session } = useSession();
     const isAuthenticated = !!session?.user;
-    const isAdmin = session?.user.role === "admin";
+    // const isAdmin = session?.user.role === "admin";
 
     const userName = session?.user?.name?.split(" ")[0];
     const userLastName = session?.user?.name?.split(" ")[1];

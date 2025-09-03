@@ -20,7 +20,7 @@ interface Props {
 //metadata dinamica
 export async function generateMetadata(
     { params }: Props,
-    parent: ResolvingMetadata
+    // parent: ResolvingMetadata
   ): Promise<Metadata> {
     const slug = (await params).slug
    

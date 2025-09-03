@@ -1,5 +1,4 @@
 "use server"
-import { PrismaClient } from "@prisma/client"
 import { Address } from "@/interfaces"
 import prisma from "@/lib/prisma"
 

@@ -28,7 +28,7 @@ export const getProductBySlug = async (slug: string) => {
                 productId: image.productId
             }))
         }
-    } catch (error) {
-        throw new Error("Failed to fetch product")
+    } catch (error) {   
+        throw new Error(`Failed to fetch product: ${error}`)
     }
 }

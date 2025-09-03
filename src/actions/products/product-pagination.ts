@@ -53,6 +53,6 @@ export const getPaginatedProductsWithImages = async ({ page = 1, take = 12, gend
             })),
         }
     } catch (error) {
-        throw new Error("Error fetching products");
+        throw new Error(`Error fetching products: ${error}`);
     }
 }

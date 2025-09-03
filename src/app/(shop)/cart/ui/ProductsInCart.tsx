@@ -3,7 +3,6 @@ import { ProductImage } from "@/components";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { useCartStore } from "@/store/cart/cart-store";
 import { currencyFormat } from "@/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

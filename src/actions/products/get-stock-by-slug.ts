@@ -13,6 +13,6 @@ export const getStockBySlug = async (slug: string) => {
         })
         return stock?.inStock ?? 0;
     } catch (error) {
-        throw new Error("Failed to fetch stock")
+        throw new Error(`Failed to fetch stock: ${error}`)
     }
 }

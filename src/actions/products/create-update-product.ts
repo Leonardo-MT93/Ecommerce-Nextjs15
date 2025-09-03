@@ -41,7 +41,7 @@ export const createUpdateProduct = async (formData: FormData) => {
     const { id, ...rest } = product;
 
     try {
-        const prismaTx = await prisma.$transaction(async (tx) => {
+        const prismaTx = await prisma.$transaction(async () => {
 
             let product: Product;
 
@@ -102,7 +102,7 @@ export const createUpdateProduct = async (formData: FormData) => {
     } catch (error) {
         return {
             ok: false,
-            message: "Error creating or updating product",
+            message: `Error creating or updating product: ${error}`,
         }
     }
 
@@ -129,7 +129,6 @@ const uploadImages = async (images: File[]) => {
         return uploadedImages;
 
     } catch (error) {
-        console.log(error);
-        throw new Error('Error uploading images to Cloudinary')
+        throw new Error(`Error uploading images to Cloudinary: ${error}`)
     }
 }
