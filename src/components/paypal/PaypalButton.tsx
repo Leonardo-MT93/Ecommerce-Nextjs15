@@ -1,15 +1,28 @@
+// PayPal temporalmente deshabilitado para producción
+/*
 'use client';
 
 import { PayPalButtons, PayPalButtonsComponentProps, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { CreateOrderData, CreateOrderActions, OnApproveData, OnApproveActions } from "@paypal/paypal-js";
 import { paypalCheckPayment, setTransactionId } from "@/actions";
-import { useRouter } from "next/navigation";
+*/
+// import { useRouter } from "next/navigation";
 
 interface Props {
     orderId: string;
     amount: number;
 }
 
+// Componente temporalmente deshabilitado para producción
+export const PaypalButton = ({ orderId, amount }: Props) => {
+    return (
+        <div className="p-4 bg-gray-100 rounded-lg text-center text-gray-600">
+            PayPal temporalmente deshabilitado para producción
+        </div>
+    );
+};
+
+/*
 export const PaypalButton = ({ orderId, amount }: Props) => {
     const router = useRouter();
     const [{ isPending }] = usePayPalScriptReducer();
@@ -75,3 +88,4 @@ export const PaypalButton = ({ orderId, amount }: Props) => {
         />
     );
 };
+*/

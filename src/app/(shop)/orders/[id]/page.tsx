@@ -1,5 +1,5 @@
 import { getOrderById } from "@/actions/order/get-order-by-id";
-import { PaypalButton } from "@/components";
+// import { PaypalButton } from "@/components";
 import Title from "@/components/ui/title/Title";
 import { currencyFormat } from "@/utils";
 import clsx from "clsx";
@@ -99,8 +99,23 @@ export default async function OrderPage({ params }: Props) {
                             <span className="mt-5 text-2xl text-right">{currencyFormat(order!.total)}</span>
                         </div>
                         <div className="mt-5 mb-2 w-full">
-                            <PaypalButton orderId={order!.id} amount={order!.total} />
-
+                            {!order!.isPaid && (
+                                <div className="flex flex-col gap-2">
+                                    <button 
+                                        className="btn-primary w-full"
+                                        onClick={() => alert('Funcionalidad de MercadoPago en desarrollo')}
+                                    >
+                                        Pagar con MercadoPago
+                                    </button>
+                                    {/* PayPal temporalmente deshabilitado para producción */}
+                                    {/* <PaypalButton orderId={order!.id} amount={order!.total} /> */}
+                                </div>
+                            )}
+                            {order!.isPaid && (
+                                <div className="bg-green-100 text-green-800 p-3 rounded-lg text-center font-semibold">
+                                    ✅ Orden pagada exitosamente
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 "use client"
 import { Product } from "@/interfaces"
 import { currencyFormat } from "@/utils"
-import Image from "next/image"
+import { ProductImage } from "@/components"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -15,9 +15,9 @@ export default function ProductGridItem({ product }: Props) {
     return (
         <div className="rounded-md overflow-hidden fade-in">
             <Link href={`/product/${product.slug}`}>
-                <Image 
+                <ProductImage 
                 className="w-full object-cover rounded-md" 
-                src={`/products/${displayImage}`} 
+                src={displayImage} 
                 alt={product.title} width={500} height={500} 
                 onMouseEnter={() => setDisplayImage(product.images[1])}
                 onMouseLeave={() => setDisplayImage(product.images[0])}

@@ -32,7 +32,7 @@ export default function AddressForm({ countries, userStoreAddress = {} }: Props)
     const { register, handleSubmit, formState: { isValid }, reset } = useForm<FormInputs>(
         {
             defaultValues: {
-                ...(userStoreAddress as any),
+                ...userStoreAddress,
                 rememberAddress: false
             }
         }

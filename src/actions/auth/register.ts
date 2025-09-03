@@ -35,17 +35,17 @@ export const registerUser = async (fullName: string, email: string, password: st
             user,
             message: 'User registered successfully'
         };
-    } catch (error: any) {
+    } catch (error: unknown) {
         
         // Handle specific Prisma errors
-        if (error.code === 'P2002') {
+        if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
             return {
                 ok: false,
                 message: 'This email is already registered. Please try with a different email.'
             };
         }
         
-        if (error.code === 'P2003') {
+        if (error && typeof error === 'object' && 'code' in error && error.code === 'P2003') {
             return {
                 ok: false,
                 message: 'Invalid data. Please check the information provided.'

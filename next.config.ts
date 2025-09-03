@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '10mb', // Aumenta el límite a 10MB para permitir subida de imágenes
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
