@@ -5,7 +5,8 @@ import { currencyFormat } from "@/utils";
 import clsx from "clsx";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { IoCartOutline } from "react-icons/io5";    
+import { IoCartOutline } from "react-icons/io5";
+import PaymentButton from "./ui/PaymentButton";    
 
 interface Props {
     params: Promise<{
@@ -99,23 +100,7 @@ export default async function OrderPage({ params }: Props) {
                             <span className="mt-5 text-2xl text-right">{currencyFormat(order!.total)}</span>
                         </div>
                         <div className="mt-5 mb-2 w-full">
-                            {!order!.isPaid && (
-                                <div className="flex flex-col gap-2">
-                                    <button 
-                                        className="btn-primary w-full"
-                                        onClick={() => alert('Funcionalidad de MercadoPago en desarrollo')}
-                                    >
-                                        Pagar con MercadoPago
-                                    </button>
-                                    {/* PayPal temporalmente deshabilitado para producción */}
-                                    {/* <PaypalButton orderId={order!.id} amount={order!.total} /> */}
-                                </div>
-                            )}
-                            {order!.isPaid && (
-                                <div className="bg-green-100 text-green-800 p-3 rounded-lg text-center font-semibold">
-                                    ✅ Orden pagada exitosamente
-                                </div>
-                            )}
+                            <PaymentButton orderId={order!.id} isPaid={order!.isPaid} />
                         </div>
                     </div>
                 </div>

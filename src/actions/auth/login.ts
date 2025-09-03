@@ -53,6 +53,14 @@ export async function authenticate(
 
 export const loginUser = async (email: string, password: string) => {
   try {
+    // Validate that both email and password are provided
+    if (!email || !password) {
+      return {
+        ok: false,
+        message: 'Email and password are required.'
+      };
+    }
+
     // Check if user exists first
     const user = await prisma.user.findUnique({
       where: { email: email.toLowerCase() },
@@ -66,16 +74,17 @@ export const loginUser = async (email: string, password: string) => {
       };
     }
 
-    // const response = await signIn('credentials', {
-    //   email,
-    //   password,
-    //   redirect: false,
-    // });
+    // Authenticate with NextAuth - this will verify the password
+    await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
 
     return {
       ok: true,
       message: 'Login successful'
-    }
+    };
   } catch (error) {
     
     if (error instanceof AuthError) {
@@ -101,6 +110,6 @@ export const loginUser = async (email: string, password: string) => {
     return {
       ok: false,
       message: 'Unexpected error occurred'
-    }
+    };
   }
 }

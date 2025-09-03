@@ -1,3 +1,5 @@
+"use client";
+
 import Title from "@/components/ui/title/Title";
 import Link from "next/link";
 import ProductsInCart from "./ui/ProductsInCart";
